@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de exemplo EC2</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -13,8 +14,7 @@
     </div>
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script>
-        // Conecte ao IP público do seu EC2 e à porta que o Node está rodando
-        // Substitua pelo IP real do seu EC2. Ex: 'http://54.23.12.99:3000'
+        // Conexão do IP público do EC2 à porta que o Node está rodando
         const socket = io('http://54.233.162.64:3000');
 
         const listaIps = document.getElementById('lista-ips');
@@ -22,12 +22,9 @@
 
         // Escuta o evento 'update-users' enviado pelo servidor
         socket.on('update-users', (ips) => {
-            // Limpa a lista atual
             listaIps.innerHTML = ''; 
-            
-            // Atualiza o contador de usuários
-            contador.innerText = ips.length;
 
+            contador.innerText = ips.length;
             // Remove IPs duplicados (caso a mesma pessoa abra várias abas)
             const ipsUnicos = [...new Set(ips)];
 
