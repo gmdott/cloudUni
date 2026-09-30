@@ -1,0 +1,20 @@
+name: Deploy Automático para EC2
+
+on:
+  push:
+    branches:
+      - main # Dispara a ação sempre que houver um novo push na branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conectar via SSH e atualizar repositório
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /home/ubuntu/cloudUni
+            git pull origin main
