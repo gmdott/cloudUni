@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
-const app = express();
+const app = express()
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: { origin: "54.233.162.64" } // Ajuste para o domínio do seu site em produção
