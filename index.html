@@ -8,6 +8,36 @@
 <body>
     <div class="container">
         <h1>Testes de site utilizando AWS com EC2</h1>
+        <h2>Usuários ativos: <span id="contador">0</span></h2>
+        <ul id="lista-ips"></ul>
     </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        // Conecte ao IP público do seu EC2 e à porta que o Node está rodando
+        // Substitua pelo IP real do seu EC2. Ex: 'http://54.23.12.99:3000'
+        const socket = io('http://54.23.12.99:3000');
+
+        const listaIps = document.getElementById('lista-ips');
+        const contador = document.getElementById('contador');
+
+        // Escuta o evento 'update-users' enviado pelo servidor
+        socket.on('update-users', (ips) => {
+            // Limpa a lista atual
+            listaIps.innerHTML = ''; 
+            
+            // Atualiza o contador de usuários
+            contador.innerText = ips.length;
+
+            // Remove IPs duplicados (caso a mesma pessoa abra várias abas)
+            const ipsUnicos = [...new Set(ips)];
+
+            // Cria um <li> para cada IP ativo e injeta no DOM
+            ipsUnicos.forEach(ip => {
+                const li = document.createElement('li');
+                li.textContent = ip === '::1' ? 'Localhost' : ip; // Tratamento visual simples
+                listaIps.appendChild(li);
+            });
+        });
+    </script>
 </body>
 </html>

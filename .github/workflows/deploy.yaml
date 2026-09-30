@@ -3,7 +3,7 @@ name: Deploy Automático para EC2
 on:
   push:
     branches:
-      - main # Dispara a ação sempre que houver um novo push na branch main
+      - main
 
 jobs:
   deploy:
