@@ -18,3 +18,7 @@ jobs:
           script: |
             cd /home/ubuntu/cloudUni
             git pull origin main
+
+            cd /home/ubuntu/cloudUni/
+            sudo cp * /var/www/html/
+            echo "Arquivos atualizados com sucesso!"
