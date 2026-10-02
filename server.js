@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: { origin: "54.20.190.40" }
+    cors: { origin: "15.228.45.17" }
 });
 
 const activeUsers = new Map(); 
