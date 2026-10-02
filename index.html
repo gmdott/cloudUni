@@ -31,7 +31,7 @@
             // Cria um <li> para cada IP ativo e injeta no DOM
             ipsUnicos.forEach(ip => {
                 const li = document.createElement('li');
-                //li.textContent = ip === '::1' ? 'Localhost' : ip; // Tratamento visual simples
+                li.textContent = ip === '::1' ? 'Localhost' : ip; // Tratamento visual simples
                 listaIps.appendChild(li);
             });
         });
